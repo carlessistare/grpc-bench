@@ -1,0 +1,58 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "io.grpc.examples.helloworld";
+option java_outer_classname = "HelloWorldProto";
+option objc_class_prefix = "HLW";
+
+package ogury;
+
+service Data {
+  rpc SendMessage (MessageRequest) returns (HystoryReply) {}
+
+  rpc SendMessageStream (stream MessageRequest) returns (HystoryReply) {}
+}
+
+message MessageRequest {
+  string api_key = 1;
+  string version = 3;
+  string field1 = 4;
+  string field2 = 5;
+  string field3 = 6;
+  string field4 = 7;
+  string field5 = 8;
+  string field6 = 9;
+  string field7 = 10;
+  string field8 = 11;
+  string field9 = 12;
+  string field10 = 13;
+  string field11 = 14;
+  string field12 = 15;
+  string field13 = 16;
+  string field14 = 17;
+  string field15 = 18;
+  string field16 = 19;
+  string field17 = 20;
+  string field18 = 21;
+  string field19 = 22;
+  int64 field20 = 23;
+  int64 field21 = 24;
+  int64 field22 = 25;
+  int64 field23 = 26;
+  int64 field24 = 27;
+  int64 field25 = 28;
+  int64 field26 = 29;
+  int64 field27 = 30;
+  int64 field28 = 31;
+  int64 field29 = 32;
+  int64 field30 = 33;
+  int64 field31 = 34;
+}
+
+message HystoryReply {
+  enum EnumSuccess {
+    OK = 0;
+    KO = 1;
+  }
+  EnumSuccess success = 1;
+}
