@@ -1,11 +1,19 @@
 var request = require('request');
 var async = require('async');
+var fs = require('fs');
 
 var message = require(process.env.MESSAGE);
 
 var newReq = function() {
     return function(callback) {
-        request.post({url:'http://' + process.env.HOST + ':3000', json: true, body: message}, function(err,httpResponse,body){
+        var options = {
+            url: 'https://' + process.env.HOST + ':3000/',
+            rejectUnauthorized : false,
+            json: true,
+            body: message
+        }
+        request.post(options, function(err,httpResponse,body){
+            if (err)  console.log(err);
             console.log(body);
             callback();
         });
