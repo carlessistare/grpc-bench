@@ -6,6 +6,7 @@ var message = require(process.env.MESSAGE);
 
 var newReq = function() {
 
+
     return function(callback) {
         var options = {
             url: 'https://' + process.env.HOST + ':3000/',
