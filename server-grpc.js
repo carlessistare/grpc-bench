@@ -9,7 +9,7 @@ var ogury_proto = grpc.load(PROTO_PATH).ogury;
 var count = 0;
 
 function sendMessage(call, callback) {
-    // console.log(call.request);
+    console.log(call.request);
     console.log(count++);
     callback(null, {success: 'OK'});
 }
