@@ -11,6 +11,8 @@ service Data {
   rpc SendMessage (MessageRequest) returns (HystoryReply) {}
 
   rpc SendMessageStream (stream MessageRequest) returns (HystoryReply) {}
+
+  rpc SendMessageStreamDuplex (stream MessageRequest) returns (stream HystoryReply) {}
 }
 
 message MessageRequest {

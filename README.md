@@ -32,3 +32,10 @@ openssl x509 -in server.crt -text # Show contents
 # Decrypt (des3) the private key in order to be used to decrypt ssl messages
 openssl rsa -in server.key -out server.key
 ```
+
+
+# Stream Duplex
+```bash
+PROTO=./complex-message.proto node server-grpc.js
+PROTO=./complex-message.proto MESSAGE=./complex-short.json HOST=localhost node client-grpc-stream-duplex.js
+```

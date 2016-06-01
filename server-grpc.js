@@ -24,18 +24,23 @@ function sendMessageStream(call, callback) {
     });
 }
 
+function sendMessageStreamDuplex(call) {
+    call.on('data', function(message) {
+        console.log(count++);
+        // console.log(message);
+        call.write({success: 'OK'});
+    });
+    call.on('end', function() {
+        console.log("BYE");
+        call.end()
+    });
+}
+
 function main() {
     var server = new grpc.Server();
-    server.addProtoService(ogury_proto.Data.service, {sendMessage: sendMessage, sendMessageStream: sendMessageStream});
-    var key_path = path.join(__dirname, './keys/server.key');
-    var pem_path = path.join(__dirname, './keys/server.crt');
+    server.addProtoService(ogury_proto.Data.service, {sendMessage: sendMessage, sendMessageStream: sendMessageStream, sendMessageStreamDuplex: sendMessageStreamDuplex});
 
-    var key_data = fs.readFileSync(key_path);
-    var pem_data = fs.readFileSync(pem_path);
-    server_creds = grpc.ServerCredentials.createSsl(null,
-        [{private_key: key_data,
-            cert_chain: pem_data}]);
-    server.bind('0.0.0.0:50052', server_creds);
+    server.bind('0.0.0.0:50052', grpc.ServerCredentials.createInsecure());
     server.start();
 }
 
