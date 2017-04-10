@@ -1,33 +1,21 @@
 var request = require('request');
-var async = require('async');
-var fs = require('fs');
+var express = require('express');
+var app = express();
+
 
 var message = require(process.env.MESSAGE);
 
-var newReq = function() {
-
-
-    return function(callback) {
-        var options = {
-            url: 'https://' + process.env.HOST + ':3000/',
-            rejectUnauthorized : false,
-            json: true,
-            body: message
-        }
-        request.post(options, function(err,httpResponse,body){
-            if (err)  console.log(err);
-            console.log(body);
-            callback();
-        });
+app.get('/ping', function (req, res) {
+    var options = {
+        url: 'http://' + process.env.HOST + ':3000/',
+        rejectUnauthorized : false,
+        json: true,
+        body: {api_key: "123445", version: "1.4.0", field1: "test-test"}
     }
-}
-
-var tasks = [];
-for (var i = 0; i < 1000; i++) {
-    tasks[i] = newReq();
-}
-async.series(tasks, function() {
-    console.log("DONE!!");
+    request.post(options, function(err){
+        if (err)  console.log(err);
+        // console.log(body);
+        res.status(200).send({});
+    });
 });
-
-
+app.listen(8080);

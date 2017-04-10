@@ -28,7 +28,7 @@ function sendMessageStreamDuplex(call) {
     call.on('data', function(message) {
         console.log(count++);
         // console.log(message);
-        call.write({success: 'OK'});
+        call.write({id: message.id, success: 'OK'});
     });
     call.on('end', function() {
         console.log("BYE");

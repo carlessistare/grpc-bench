@@ -9,7 +9,7 @@ app.use(bodyParser.json({inflate: true}));
 app.use(compression({threshold: 1}));
 
 app.post('/', function (req, res, next) {
-    console.log(req.body);
+    // console.log(req.body);
     console.log(count++);
     res.send({success: 'OK'});
     next();

@@ -16,7 +16,8 @@ service Data {
 }
 
 message MessageRequest {
-  string api_key = 1;
+  int32 id = 1;
+  string api_key = 2;
   string version = 3;
   string field1 = 4;
   string field2 = 5;
@@ -56,5 +57,6 @@ message HystoryReply {
     OK = 0;
     KO = 1;
   }
-  EnumSuccess success = 1;
+  int32 id = 1;
+  EnumSuccess success = 2;
 }
